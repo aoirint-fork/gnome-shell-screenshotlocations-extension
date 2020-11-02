@@ -3,7 +3,7 @@
 - Read the [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md)
 - Speak in English, if possible
 
-## Bug Reports, Feature Requests, & Questions
+## Bug Reports & Questions
 
 - Fill out the template as best you can
 
