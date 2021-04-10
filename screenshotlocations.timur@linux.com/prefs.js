@@ -18,50 +18,56 @@
 
 /* exported buildPrefsWidget init */
 
-imports.gi.versions.Gtk = '3.0';
-imports.gi.versions.Handy = '0.0';
-const {GObject, GLib, Gio, Gtk, Handy} = imports.gi;
-
+const {GObject, GLib, Gio, Gtk} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 
-// Register resources
-const resource = Me.metadata['data-gresource'];
-const resourceFile = Me.dir.get_child(resource);
-Gio.resources_register(Gio.Resource.load(resourceFile.get_path()));
-
 var ScreenshotLocationsExtensionPrefs = GObject.registerClass({
     GTypeName: 'ScreenshotLocationsExtensionPrefs',
-    Template: 'resource:///org/gnome/shell/extensions/screenshotlocations/ui/prefs.ui',
+    Template: Me.dir.get_child('prefs.ui').get_uri(),
     InternalChildren: [
-        'path_chooser',
+        'screenshot_folder_label',
+        'folder_chooser',
+        'folder_chooser_button',
     ],
-}, class ScreenshotLocationsExtensionPrefs extends Gtk.ListBox {
+}, class ScreenshotLocationsExtensionPrefs extends Gtk.Box {
     _init(preferences) {
         super._init();
         this._preferences = preferences;
         this._sync();
 
         this._preferences.connect('changed', this._sync.bind(this));
-        this._path_chooser.connect('file-set',
-            self => this._preferences.set_string('save-directory', self.get_file().get_path()));
+    }
+
+    _onBtnClicked(btn) {
+        let parent = btn.get_root();
+        this._folder_chooser.set_transient_for(parent);
+        this._folder_chooser.show();
+    }
+
+    _onFileChooserResponse(native, response) {
+        if (response !== Gtk.ResponseType.ACCEPT)
+            return;
+
+        const filePath = native.get_file().get_path();
+        this._preferences.set_string('save-directory', filePath);
     }
 
     _sync() {
         const p = this._preferences.get_string('save-directory');
         if (GLib.file_test(p, GLib.FileTest.EXISTS)) {
             const file = Gio.File.new_for_path(p);
-            this._path_chooser.set_file(file);
+            this._folder_chooser.set_file(file);
+            this._screenshot_folder_label.set_text('Screenshot directory: %s'.format(p));
         }
     }
 });
 
+function init() {
+    // noop
+}
+
 function buildPrefsWidget() {
     const preferences = ExtensionUtils.getSettings();
     return new ScreenshotLocationsExtensionPrefs(preferences);
-}
-
-function init() {
-    Gtk.init(null);
-    Handy.init(null);
 }
