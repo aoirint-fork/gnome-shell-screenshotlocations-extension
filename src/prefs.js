@@ -18,9 +18,13 @@
 
 /* exported buildPrefsWidget init */
 
+const Gettext = imports.gettext;
 const {GObject, GLib, Gio, Gtk} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
+
+const Domain = Gettext.domain(Me.metadata.uuid);
+const _ = Domain.gettext;
 
 var ScreenshotLocationsExtensionPrefs = GObject.registerClass({
     GTypeName: 'ScreenshotLocationsExtensionPrefs',
@@ -58,16 +62,16 @@ var ScreenshotLocationsExtensionPrefs = GObject.registerClass({
         if (GLib.file_test(p, GLib.FileTest.EXISTS)) {
             const file = Gio.File.new_for_path(p);
             this._folder_chooser.set_file(file);
-            this._screenshot_folder_label.set_text('Screenshot directory: %s'.format(p));
+            this._screenshot_folder_label.set_text(_('Screenshot directory: %s').format(p));
         }
     }
 });
 
-function init() {
-    // noop
-}
-
 function buildPrefsWidget() {
     const preferences = ExtensionUtils.getSettings();
     return new ScreenshotLocationsExtensionPrefs(preferences);
+}
+
+function init() {
+    ExtensionUtils.initTranslations();
 }

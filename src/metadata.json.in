@@ -1,0 +1,10 @@
+{
+  "uuid": "@uuid@",
+  "version": @version@,
+  "settings-schema": "@settings_schema@",
+  "gettext-domain": "@gettext_domain@",
+  "name": "Screenshot Locations",
+  "description": "Change the default GNOME screenshot directory",
+  "shell-version": ["40"],
+  "url": "https://codeberg.org/kiyui/gnome-shell-screenshotlocations-extension"
+}
