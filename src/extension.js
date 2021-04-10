@@ -62,5 +62,6 @@ class Extension {
 }
 
 function init() {
+    ExtensionUtils.initTranslations();
     return new Extension();
 }

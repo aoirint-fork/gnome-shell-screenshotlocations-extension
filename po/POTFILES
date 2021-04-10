@@ -1,0 +1,4 @@
+src/extension.js
+src/prefs.js
+src/prefs.ui
+data/org.gnome.shell.extensions.screenshotlocations.gschema.xml

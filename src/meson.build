@@ -9,6 +9,7 @@ gse_conf = configuration_data()
 gse_conf.set('uuid', gse_uuid)
 gse_conf.set('version', meson.project_version())
 gse_conf.set('settings_schema', gse_prefix)
+gse_conf.set('gettext_domain', gettext_domain)
 metadata_json = configure_file(
   input: 'metadata.json.in',
   output: 'metadata.json',
