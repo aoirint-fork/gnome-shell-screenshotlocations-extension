@@ -1,0 +1,46 @@
+# Malay translations for screenshotlocations.timur@linux.com package.
+# Copyright (C) 2021 THE screenshotlocations.timur@linux.com'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the screenshotlocations.timur@linux.com package.
+# Automatically generated, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: screenshotlocations.timur@linux.com\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-11 00:17+0800\n"
+"PO-Revision-Date: 2021-04-10 23:52+0800\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ms\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/prefs.js:65
+#, javascript-format
+msgid "Screenshot directory: %s"
+msgstr "Direktori tangkapan skrin: %s"
+
+#: src/prefs.ui:28
+msgid "Screenshot location"
+msgstr "Lokasi tangkapan skrin"
+
+#: src/prefs.ui:39
+msgid "No folder selected"
+msgstr "Tiada folder yang dipilih"
+
+#: src/prefs.ui:54
+msgid "Change"
+msgstr "Kemaskini"
+
+#: src/prefs.ui:66
+msgid "Select Screenshot Folder"
+msgstr "Pilih Folder Tangkapan Skrin"
+
+#: data/org.gnome.shell.extensions.screenshotlocations.gschema.xml:6
+msgid "Screenshot directory"
+msgstr "Folder tangkapan skrin"
+
+#: data/org.gnome.shell.extensions.screenshotlocations.gschema.xml:7
+msgid "Manage where screenshots are saved"
+msgstr "Kemaskinikan lokasi pemyimpanan tangkapan skrin"
